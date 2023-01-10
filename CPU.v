@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module CPU_3(clk, rst,pc , t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, memory3_out, nextpc_out);
+module CPU(clk, rst,pc , t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, memory3_out, nextpc_out);
 
 input clk, rst;
 input [31:0]pc; 

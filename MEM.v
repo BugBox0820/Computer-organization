@@ -72,7 +72,7 @@ begin
 			memory1<=32'd0;
 			memory2<=32'd0;
 			memory3<=32'd0;
-			memory4<=32'd0;
+			memory4<=32'd5;
 			memory5<=32'd0;
 		end
 	else

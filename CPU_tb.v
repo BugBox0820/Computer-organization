@@ -24,9 +24,9 @@ module CPU_tb();
 
 // Inputs
 	reg [31:0] pc;
-	reg clk=0;
+	reg clk;
 
-	reg rst=0;
+	reg rst;
 
 	// Outputs
 	wire [31:0] t0_out;
@@ -41,21 +41,16 @@ module CPU_tb();
 	wire [31:0] s2_out;
 	wire [31:0] s1_out;
 	wire [31:0] s0_out;
+	wire [31:0]memory3_out, nextpc_out, data_out1, data_out2;
 
-CPU_3 M1 (clk, rst, pc , t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, memory3_out, nextpc_out);
+CPU M1(clk, rst, pc, t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, memory3_out, nextpc_out, data_out1, data_out2);
 
 initial begin
-		// Initialize Inputs
 		pc = 0;
-		clk = 0;
 		rst = 1;
 
-		// Wait 100 ns for global reset to finish
 		#20 rst=0;
 		#10 rst=1;
-
-		// Add stimulus here
-
 	end
 
 initial

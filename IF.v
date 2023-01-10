@@ -58,7 +58,7 @@ always @(nextpc)
 begin
     case(nextpc)
     32'd0: Instruction_IF=32'd0;
-    32'd4: Instruction_IF=32'b00100010000010010000000110010000;//addi $t1, $s0, 400
+    32'd4: Instruction_IF=32'b001000_10000_01001_0000000110010000;//addi $t1, $s0, 400
     32'd8: Instruction_IF=32'd0;//nop
     32'd12: Instruction_IF=32'd0;//nop
     32'd16: Instruction_IF=32'b10001101001100010000000000000000;//LOOP: lw $s1, 0($t1)

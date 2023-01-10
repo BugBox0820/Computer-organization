@@ -113,6 +113,14 @@ begin
             else
                 branch<=0;
         end
+        else if(Instruction_EXE[31:26]==6'b000101)//bnq
+        begin
+            Alu_result<=Alu_result;
+            if(Read_data1!=Read_data2)
+                branch<=1;
+            else
+                branch<=0;
+        end
         else//jump
         begin
             Alu_result<=Alu_result;

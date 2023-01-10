@@ -13,7 +13,7 @@ wire [31:0]t0, t1, t2, t3, t4, t5, s0, s1, s2, s3, s4, s5;
 wire [31:0]Readdata1, Readdata2, sign_extend;
 wire [31:0]Alu_result;
 wire [31:0]Write_data_mem;
-wire [31:0]readdata;
+wire [31:0]Readdata;
 wire branch, jump;
 wire [31:0]memory3;
 wire [31:0]next_pc;
@@ -65,7 +65,7 @@ EXE u3(.clk(clk), .reset(rst),
     .Sign_extend(sign_extend), 
     .branch(branch));
 
-MEM(.clk(clk), .reset(rst), 
+MEM u4(.clk(clk), .reset(rst), 
     .Read_data_mem(Readdata), 
     .Instruction_MEM(EXE_instruction), 
     .Alu_result(Alu_result), 

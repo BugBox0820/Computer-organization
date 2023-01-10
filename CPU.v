@@ -2,19 +2,21 @@
 
 
 
-module CPU(clk, rst,pc , t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, next_pc, memory3);
+module CPU(clk, rst,pc , t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out);
 
 input clk, rst;
 input [31:0]pc; 
-output reg[31:0]t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, next_pc, memory3;//unneeded output
+output reg[31:0]t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out;//unneeded output
 
-wire [31:0]next_pc, instruction, IF_instruction, ID_instruction, EXE_instruction, MEM_instruction, WB_instruction;
+wire [31:0]instruction, IF_instruction, ID_instruction, EXE_instruction, MEM_instruction, WB_instruction;
 wire [31:0]t0, t1, t2, t3, t4, t5, s0, s1, s2, s3, s4, s5;
 wire [31:0]Readdata1, Readdata2, sign_extend;
 wire [31:0]Alu_result;
 wire [31:0]Write_data_mem;
 wire [31:0]readdata;
-wire [31:0]branch, jump;
+wire branch, jump;
+wire [31:0]memory3;
+wire [31:0]next_pc;
 
 always @(*)begin //observe
     t0_out = t0;

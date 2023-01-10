@@ -1,22 +1,41 @@
 `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2023/01/10 19:13:51
+// Design Name: 
+// Module Name: ID
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
 
 module ID(IF_instruction, clk, rst, t0, t1, t2, t3, t4, t5, s0, s1, s2, s3, s4, s5, 
           ID_instruction, Readdata1, Readdata2, sign_extend, jump);
 
 
-input [31:0]IF_instruction;
+input [31:0] IF_instruction;
 input clk, rst;
-input [31:0]t0, t1, t2, t3, t4, t5;
-input [31:0]s0, s1, s2, s3, s4, s5;
+input [31:0] t0, t1, t2, t3, t4, t5;
+input [31:0] s0, s1, s2, s3, s4, s5;
 
-output [31:0]ID_instruction;
-output [31:0]Readdata1, Readdata2;
-output [31:0]sign_extend;
+output [31:0] ID_instruction;
+output [31:0] Readdata1, Readdata2;
+output [31:0] sign_extend;
 output jump;
-reg [31:0]ID_instruction;
-reg signed[31:0]Readdata1, Readdata2;
-reg signed[31:0]sign_extend;
+reg [31:0] ID_instruction;
+reg signed[31:0] Readdata1, Readdata2;
+reg signed[31:0] sign_extend;
 reg jump;
 
 always @(posedge clk or negedge rst)begin

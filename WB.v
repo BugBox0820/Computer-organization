@@ -1,15 +1,34 @@
 `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2023/01/10 19:14:23
+// Design Name: 
+// Module Name: WB
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
 
 module WB(clk, rst, MEM_instruction, Readdata, t0, t1, t2, t3, t4, t5, s0, s1, s2, s3, s4, s5);
 
 input clk, rst;
-input [31:0]MEM_instruction, Readdata;
+input [31:0] MEM_instruction, Readdata;
 
-output [31:0]t0, t1, t2, t3, t4, t5;
-output [31:0]s0, s1, s2, s3, s4, s5;
-reg signed [31:0]t0, t1, t2, t3, t4, t5;
-reg signed [31:0]s0, s1, s2, s3, s4, s5;
+output [31:0] t0, t1, t2, t3, t4, t5;
+output [31:0] s0, s1, s2, s3, s4, s5;
+reg signed [31:0] t0, t1, t2, t3, t4, t5;
+reg signed [31:0] s0, s1, s2, s3, s4, s5;
 
 always @(negedge clk or negedge rst)begin
     if (!rst)begin

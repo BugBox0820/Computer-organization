@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module IF(clk, reset, pc,nextpc, instruction_IF, instruction_ID, branch, jump);
+module IF(clk, reset, pc, nextpc, Instruction_IF, Instruction_ID, branch, jump);
 
 input clk,reset;
 input [31:0] pc;
@@ -29,13 +29,13 @@ input branch;
 input jump;
 
 output reg [31:0] nextpc;
-output reg [31:0] instruction_IF, instruction_ID;
+output reg [31:0] Instruction_IF, Instruction_ID;
 
 wire [31:0] branchaddress;
 wire [31:0] jumpaddress;
 
-assign branchaddress = {14'd0,instruction_ID[15:0],2'd0}+32'd4+nextpc;
-assign jumpaddress={4'd0,instruction_IF[25:0],2'd0};
+assign branchaddress={14'd0,Instruction_ID[15:0],2'd0}+32'd4+nextpc;
+assign jumpaddress={4'd0,Instruction_IF[25:0],2'd0};
 
 always@(posedge clk or negedge reset)
 begin
@@ -57,21 +57,28 @@ end
 always @(nextpc)
 begin
     case(nextpc)
-    32'd0: instruction_IF=32'd0;
-    32'd4: instruction_IF=32'b00100010000010010000000110010000;//addi $t1, $s0, 400
-    32'd8: instruction_IF=32'b10001101001100010000000000000000;//LOOP: lw $s1, 0($t1)
-    32'd12: instruction_IF=32'b00000010010100101000100000100000;//add $s2, $s2, $s1
-    32'd16: instruction_IF=32'b00100001001010011111111111111100;//addi $t1, $t1, -4
-    32'd16: instruction_IF=32'b00010110000010011111111111111100;//bne $t1, $s0, LOOP
+    32'd0: Instruction_IF=32'd0;
+    32'd4: Instruction_IF=32'b00100010000010010000000110010000;//addi $t1, $s0, 400
+    32'd8: Instruction_IF=32'd0;//nop
+    32'd12: Instruction_IF=32'd0;//nop
+    32'd16: Instruction_IF=32'b10001101001100010000000000000000;//LOOP: lw $s1, 0($t1)
+    32'd20: Instruction_IF=32'd0;//nop
+    32'd24: Instruction_IF=32'd0;//nop
+    32'd28: Instruction_IF=32'b00000010010100101000100000100000;//add $s2, $s2, $s1
+    32'd32: Instruction_IF=32'b00100001001010011111111111111100;//addi $t1, $t1, -4
+    32'd36: Instruction_IF=32'd0;//nop
+    32'd40: Instruction_IF=32'd0;//nop
+    32'd44: Instruction_IF=32'b00010110000010011111111111111100;//bne $t1, $s0, LOOP
+    default: Instruction_IF=32'd0;
     endcase
 end
 
 always @(posedge clk or negedge reset)
 begin
     if(!reset)
-        instruction_ID<=32'd0;
+        Instruction_ID<=32'd0;
     else
-        instruction_ID<=instruction_IF;
+        Instruction_ID<=Instruction_IF;
 end
 
 endmodule

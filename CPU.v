@@ -1,22 +1,40 @@
 `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2023/01/05 20:06:42
+// Design Name: 
+// Module Name: CPU_3
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
 
-
-module CPU(clk, rst,pc , t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, memory3_out, nextpc_out);
+module CPU_3(clk, rst,pc , t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, memory3_out, nextpc_out);
 
 input clk, rst;
 input [31:0]pc; 
-output reg[31:0]t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, memory3_out, nextpc_out;//unneeded output
+output reg [31:0] t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, memory3_out, nextpc_out;//unneeded output
 
-wire [31:0]instruction, IF_instruction, ID_instruction, EXE_instruction, MEM_instruction, WB_instruction;
-wire [31:0]t0, t1, t2, t3, t4, t5, s0, s1, s2, s3, s4, s5;
-wire [31:0]Readdata1, Readdata2, sign_extend;
-wire [31:0]Alu_result;
-wire [31:0]Write_data_mem;
-wire [31:0]Readdata;
+wire [31:0] instruction, IF_instruction, ID_instruction, EXE_instruction, MEM_instruction, WB_instruction;
+wire [31:0] t0, t1, t2, t3, t4, t5, s0, s1, s2, s3, s4, s5;
+wire [31:0] Readdata1, Readdata2, sign_extend;
+wire [31:0] Alu_result;
+wire [31:0] Write_data_mem;
+wire [31:0] Readdata;
 wire branch, jump;
-wire [31:0]memory3;
-wire [31:0]next_pc;
+wire [31:0] memory3;
+wire [31:0] next_pc;
 
 always @(*)begin //observe
     t0_out = t0;
@@ -38,8 +56,8 @@ end
 
 IF u1(.clk(clk), .reset(rst), 
       .pc(pc), .nextpc(next_pc), 
-      .instruction_IF(instruction), //unneeded output
-      .instruction_ID(IF_instruction), 
+      .Instruction_IF(instruction), //unneeded output
+      .Instruction_ID(IF_instruction), 
       .branch (branch), 
       .jump (jump));
 
@@ -78,11 +96,5 @@ WB u5(.clk(clk), .rst(rst),
    .Readdata(Readdata), 
    .t0(t0), .t1(t1), .t2(t2), .t3(t3), .t4(t4), .t5(t5), 
    .s0(s0), .s1(s1), .s2(s2), .s3(s3), .s4(s4), .s5(s5));
-
-
-
-
-
-
 
 endmodule

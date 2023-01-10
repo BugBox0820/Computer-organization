@@ -2,11 +2,11 @@
 
 
 
-module CPU(clk, rst,pc , t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out);
+module CPU(clk, rst,pc , t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, memory3_out, nextpc_out);
 
 input clk, rst;
 input [31:0]pc; 
-output reg[31:0]t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out;//unneeded output
+output reg[31:0]t0_out, t1_out, t2_out, t3_out, t4_out, t5_out, s0_out, s1_out, s2_out, s3_out, s4_out, s5_out, memory3_out, nextpc_out;//unneeded output
 
 wire [31:0]instruction, IF_instruction, ID_instruction, EXE_instruction, MEM_instruction, WB_instruction;
 wire [31:0]t0, t1, t2, t3, t4, t5, s0, s1, s2, s3, s4, s5;
@@ -32,6 +32,8 @@ always @(*)begin //observe
     s3_out = s3;
     s4_out = s4;
     s5_out = s5;
+    memory3_out = memory3;
+    nextpc_out = next_pc;
 end
 
 IF u1(.clk(clk), .reset(rst), 
